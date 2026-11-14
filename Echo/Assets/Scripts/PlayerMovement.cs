@@ -69,4 +69,9 @@ public class PlayerMovement : MonoBehaviour
         }
         jumpPressed = false;
     }
+
+    public void ResetExtraJumps() //resetovani poctu dalsich skoku ve vzduchu pri pouziti bounce padu
+    {
+        extraJumps = extraJumpsValue;
+    }
 }
