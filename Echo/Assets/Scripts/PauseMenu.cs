@@ -4,7 +4,6 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pausePanel; //panel escape systemu
-
     private bool isPaused = false;
 
     void Update()
