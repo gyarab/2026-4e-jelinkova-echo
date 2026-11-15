@@ -6,6 +6,7 @@ public class MovingPlatform : MonoBehaviour
     public Transform[] points; // pole bodu pohybu platformy
 
     private int i;
+    private bool isQuitting = false;
 
     void Start()
     {
@@ -27,19 +28,25 @@ public class MovingPlatform : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, points[i].position, speed * Time.deltaTime);
     }
 
+    private void OnApplicationQuit()
+    {
+        isQuitting = true; //aplikace se ukoncuje - zabrani se nasledujici funkce, aby se hrac neodpojil od platformy pri ukoncovani hry
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player")) //pokud hrac vstoupi do kolize s platformou
+        //Debug.Log("Collided with: " + collision.gameObject.name);
+        if(!isQuitting && gameObject.activeInHierarchy) //kontrola, jestli se aplikace ukoncuje a jestli je platforma aktivni
         {
-            collision.transform.SetParent(transform); //hrace nastavime jako dite, tedy jako soucast platformy, aby se pohybovali spolu
+            collision.transform.SetParent(transform); //objekt nastavime jako dite, tedy jako soucast platformy, aby se pohybovaly spolu
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player")) //pokud hrac opusti kolizi s platformou
+        //Debug.Log("Exited collision with: " + collision.gameObject.name);
+        if(!isQuitting && gameObject.activeInHierarchy && collision.gameObject.activeInHierarchy) //kontrola, jestli se aplikace ukoncuje a jestli je platforma a hrac aktivni
         {
-            collision.transform.SetParent(null); //hrace odstranime jako dite, aby se opet pohyboval samostatne
+            collision.transform.SetParent(null); //objekt odstranime jako dite, aby se opet pohyboval samostatne
         }
     }
 }

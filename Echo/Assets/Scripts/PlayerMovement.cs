@@ -5,7 +5,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 5f;
     //public float sprintSpeed = 10f; mozna pouzijeme pozdeji
     public Vector2 movement; //vektor pro pohyb v osach x a y
-    public float jumpForce = 5f;
+    public float jumpForce = 3f;
     private Rigidbody2D rb; //na praci s fyzikou
     private bool isGrounded; //kontrola, jestli je hrac na zemi
     private bool jumpPressed; //kontrola, jestli hrac stiskl mezernik

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Box
   - BouncePad
+  - Door
   layers:
   - Default
   - TransparentFX

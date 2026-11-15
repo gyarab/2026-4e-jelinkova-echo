@@ -8,12 +8,16 @@ public class Door : MonoBehaviour
     {
         if(buttons.Length > 0 && AllButtonsPressed())
         {
+            /*foreach(Button b in buttons)
+            {
+                b.LockButton(); 
+            }*/
             Destroy(gameObject); //pokud jsou vsechna tlacitka stisknuta, tak se dvere znici
         }
     }
 
     //kontrola toho, jestli jsou vsechna tlacitka stisknuta
-    private bool AllButtonsPressed()
+    public bool AllButtonsPressed()
     {
         foreach(Button b in buttons)
         {
